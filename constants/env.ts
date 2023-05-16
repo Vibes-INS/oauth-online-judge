@@ -1,8 +1,3 @@
-export const GITHUB_OAUTH_CLIENT_ID =
-  process.env.NEXT_GITHUB_OAUTH_CLIENT_ID || ''
-export const GITHUB_OAUTH_CLIENT_SECRET_ID =
-  process.env.NEXT_GITHUB_OAUTH_CLIENT_SECRET_ID || ''
-
 export const FIREBASE_CONFIG = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_API_KEY || '',
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_AUTH_DOMAIN || '',
