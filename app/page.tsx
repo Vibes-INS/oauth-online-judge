@@ -37,10 +37,12 @@ export default function Home({
 }) {
   const isDisabled = !searchParams.dev
   const [isShowMore, setIsShowMore] = useState(false)
+  const [isLoggingWithGithub, setIsLoggingWithGithub] = useState(false)
   const toast = useToast()
   const onLoginWithGithub = async () => {
     const auth = getAuth()
     try {
+      setIsLoggingWithGithub(true)
       const result = await signInWithPopup(auth, provider)
       const credential = GithubAuthProvider.credentialFromResult(result)
       console.log('UserCredential: ', result)
@@ -64,6 +66,8 @@ export default function Home({
         title: 'Login Failed',
         description: error.message,
       })
+    } finally {
+      setIsLoggingWithGithub(false)
     }
   }
 
@@ -123,7 +127,11 @@ export default function Home({
             <Icon as={FacebookSVG} w="6" h="6" />
             Facebook
           </Button>
-          <Button variant="new_outline" onClick={onLoginWithGithub}>
+          <Button
+            variant="new_outline"
+            onClick={onLoginWithGithub}
+            isLoading={isLoggingWithGithub}
+          >
             <Icon as={GithubSVG} w="6" h="6" />
             Github
           </Button>
