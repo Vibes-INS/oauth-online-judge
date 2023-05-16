@@ -24,6 +24,7 @@ import AppleSVG from '@/assets/apple.svg?svgr'
 import MicrosoftSVG from '@/assets/microsoft.svg?svgr'
 import ArrowSVG from '@/assets/arrow.svg?svgr'
 import { useState } from 'react'
+import JWTDecode from 'jwt-decode'
 
 initializeApp(FIREBASE_CONFIG)
 const provider = new GithubAuthProvider()
@@ -44,7 +45,18 @@ export default function Home({
       const credential = GithubAuthProvider.credentialFromResult(result)
       console.log('UserCredential: ', result)
       console.log('OAuthCredential: ', credential)
-      console.log('AccessToken: ', credential?.accessToken)
+      if (!credential) return
+      console.log('AccessToken: ', credential.accessToken)
+      const tokenId = (result.user as any).accessToken
+      console.log('TokenID: ', tokenId)
+      if (tokenId) {
+        console.log('JWT decode: ', JWTDecode(tokenId))
+      }
+      toast({
+        status: 'info',
+        title: 'OAuth Login successful!',
+        description: 'Please refer to the console for details',
+      })
     } catch (error: any) {
       console.error(error)
       toast({
