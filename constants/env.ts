@@ -1,0 +1,4 @@
+export const GITHUB_OAUTH_CLIENT_ID =
+  process.env.NEXT_GITHUB_OAUTH_CLIENT_ID || ''
+export const GITHUB_OAUTH_CLIENT_SECRET_ID =
+  process.env.NEXT_GITHUB_OAUTH_CLIENT_SECRET_ID || ''
